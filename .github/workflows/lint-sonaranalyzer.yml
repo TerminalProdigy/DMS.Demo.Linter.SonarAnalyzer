@@ -1,0 +1,25 @@
+name: SonarAnalyzer C# Lint
+
+on:
+  pull_request:
+    branches: [master]  # or main or dev — match your default branch
+
+jobs:
+  lint:
+    name: Run SonarAnalyzer.CSharp
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'  # match your target framework
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution (runs analyzers)
+      run: dotnet build --no-restore -warnaserror
