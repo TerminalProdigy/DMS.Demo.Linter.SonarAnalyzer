@@ -1,6 +1,7 @@
 name: SonarAnalyzer C# Lint
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [master]  # or main or dev — match your default branch
 
